@@ -40,3 +40,30 @@ Running computers cost money. You get 60 hours free every month and 15 gigabytes
 - If you forget, don't worry: It'll shut down automatically after 30 minutes. But why waste that?
 - Go back to the main tab, and you'll see it's gone
 - Can restart
+
+## Weather Warnings
+
+- Look at the Makefile
+- Let's set up the url for getting the alerts we want
+  - Base endpoint: `https://api.weather.gov/alerts/active`
+  - We want actual warnings, not tests: `?status=actual`
+  - Area? Let's say Maryland, Virginia and D.C. You can get fancier here, but states are easy: `&area=MD,DC,VA`
+  - Code. This is the warning type. Tornado warning, tornado watch, etc. List is [here](https://www.weather.gov/nwr/eventcodes).
+
+
+
+
+- Details: https://www.weather.gov/documentation/services-web-api#/default/alerts_active
+- Click on "Specification"
+
+No authentication
+
+Source for the "code" parameter: https://www.weather.gov/nwr/eventcodes
+
+Request url: https://api.weather.gov/alerts/active?status=actual&message_type=alert&code=TOR&limit=500
+
+Tornado watches: https://api.weather.gov/alerts/active?status=actual&message_type=alert&code=TOA&limit=500
+
+```bash
+curl -X GET "https://api.weather.gov/alerts/active?status=actual&message_type=alert&code=TOR&limit=500" -H "accept: application/geo+json"
+```
