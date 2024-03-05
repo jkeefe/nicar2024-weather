@@ -46,4 +46,4 @@ venv
 /public/build/
 
 # tmp folder
-/tmp
+tmp
