@@ -166,10 +166,10 @@ const saveFile = async (dir, filename, data) => {
 const outputTheWarning = (warning) => {
 
     console.log(`NEW WARNING!`)
-    console.log(`${warning.features[0].properties.event}`)
-    console.log(`${warning.headline}`)
+    console.log(`${warning.properties.event}`)
+    console.log(`${warning.properties.headline}`)
     console.log(`Locations/counties included: ${truncator(warning.areaDesc)}`)
-    warning.slack.lines.push(`Warning time: *${dayjs(warning.effective).tz('America/New_York').format('dddd, MMM D, YYYY [at] h:mm a [Eastern]')}*`)
+    warning.slack.lines.push(`Warning time: *${dayjs(warning.properties.effective).tz('America/New_York').format('dddd, MMM D, YYYY [at] h:mm a [Eastern]')}*`)
 
     return true
 

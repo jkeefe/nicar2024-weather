@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "@slack/web-api": "^7.0.2",
-    "dayjs": "^1.11.10"
+    "dayjs": "^1.11.10",
+    "jsonminify": "^0.4.2"
   }
 }

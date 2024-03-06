@@ -1,4 +1,5 @@
-SOURCE_URL:="https://api.weather.gov/alerts/active?status=actual&area=MD,DC,VA&code=TOR,FFW,EWW,BZW,HLS,HUA,HUW,TRA,TRW,TSY,TSA,TSW,SSW,NUW,RHW,SPW,VOW,CEM&limit=500"
+# SOURCE_URL:="https://api.weather.gov/alerts/active?status=actual&code=TOR,FFW,EWW,BZW,HLS,HUA,HUW,TRA,TRW,TSY,TSA,TSW,SSW,NUW,RHW,SPW,VOW,CEM&limit=500"
+SOURCE_URL:="https://s3.amazonaws.com/media.johnkeefe.net/data/example_warnings.json"
 
 all: clean download warnings
 
