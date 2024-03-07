@@ -1,9 +1,8 @@
-import { sids } from "./resources/sids.js"
-
-const yearToCheck = "2023"
-const dayToCheck = "12-25"
-
+const STATION_IDS_PATH = "./resources/stationIds.json"
 const BASE_URL_DATA = "https://data.rcc-acis.org/StnData";
+
+const yearToCheck = "2024"
+const dayToCheck = "03-03"
 
 const getParams = (sid) => {
   return {
