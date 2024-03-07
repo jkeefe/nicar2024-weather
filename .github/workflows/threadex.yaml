@@ -1,0 +1,76 @@
+name: threadex
+
+on:
+  # schedule:
+  #   - cron: '15 12 * * *'   # <-- Set your cron here (UTC). Uses github which can be ~2-10 mins late.
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref_name }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout this repo into the Github Actions runner
+        uses: actions/checkout@master
+        with:
+          fetch-depth: 1
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+
+      - name: Cache node_modules
+        uses: actions/cache@v3
+        id: npm-cache
+        with:
+          path: '**/threadex/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/threadex/package-lock.json') }}
+
+      - name: Install packages if there's no cache
+        env:
+          NPMRC: ${{ secrets.NPMRC }}
+        if: steps.npm-cache.outputs.cache-hit != 'true'
+        run: |-
+          cd ./"$GITHUB_WORKFLOW"
+          echo "$NPMRC" | base64 --decode > .npmrc
+          npm ci 
+
+      # - name: Set up Python 3.10        # <-- uncomment to install python
+      #   uses: actions/setup-python@v4
+      #   with:
+      #     python-version: '3.10' 
+      #     cache: 'pip'
+
+      # - name: Install pip dependencies  # <-- create a requirements.txt file in your bot repo with any pip dependencies
+      #   run: |
+      #     cd ./bots/"$GITHUB_WORKFLOW"
+      #     pip install -r requirements.txt
+          
+      # - name: Install GDAL and other apt dependencies    # <-- for GDAL and other apt dependencies
+      #   uses: awalsh128/cache-apt-pkgs-action@latest
+      #   with:
+      #     packages: python3-numpy gdal-bin libgdal-dev
+
+      - name: Start the data processing using make
+        run: |-
+          cd ./"$GITHUB_WORKFLOW"
+          make all                                        # <-- this runs your main script
+
+      - name: Report status
+        uses: ravsamhq/notify-slack-action@v2
+        if: always()
+        with:
+          status: ${{ job.status }}
+          notification_title: '*Weather Bot issue:*'
+          message_format: '{emoji} *{workflow}* bot has {status_message}.'
+          footer: '<{run_url}|View this run on Github.>'
+          notify_when: 'failure'
+          # mention_users: 'W019660LURJ'            # <-- optionally mention users (here, @johnkeefe)
+          # mention_users_when: 'failure,warnings'  # <--
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
