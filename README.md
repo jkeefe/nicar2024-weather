@@ -176,5 +176,5 @@ To get this working, you need to do two key things:
 - Optionally to generate station ids: `make stations`
 - `make scrape`
 
-- ACIS documentation: http://www.rcc-acis.org/docs_webservices.html
-- Query builder: https://builder.rcc-acis.org/
+ACIS documentation: http://www.rcc-acis.org/docs_webservices.html
+Query builder: https://builder.rcc-acis.org/
