@@ -75,6 +75,11 @@ const buildSlackMessage = (warning) => {
     warning.slack.lines.push(`:warning: *${warning.properties.event}*\n`)
     warning.slack.lines.push(`*${warning.properties.headline}*\n`)
     warning.slack.lines.push(`Locations/counties included: *${truncator(warning.properties.areaDesc)}*`)
+
+    if (warning.map_url) {
+        warning.slack.lines.push(`View warning <${warning.map_url}|on a map>`)
+    }
+
     warning.slack.lines.push(`Warning time: *${warning.properties.effective}*`)
     warning.slack.lines.push(`See thread :thread: for details ...`)
 
@@ -118,8 +123,9 @@ const sendSlack = async (warning) => {
     if (!SLACK_TOKEN) {
         console.log(`-----`)
         console.log(`You haven't set a SLACK_TOKEN which probably means you're running on a local machine.`)
-        console.log(`To use it locally, get your Slack token and then do:`)
+        console.log(`To use it locally, get your Slack bot token and then do:`)
         console.log(`export SLACK_TOKEN=  ... followed by the token`)
+        console.log(`-----`)
         return
     }
 
