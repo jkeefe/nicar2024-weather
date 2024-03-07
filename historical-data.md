@@ -31,8 +31,6 @@ Example of this data set in use ([link](https://www.nytimes.com/interactive/2024
 
 > The SCEC tracks 5 core climatological elements for every state (Maximum Temperature, Minimum Temperature, 24-Hour Precipitation, Monthly Snowfall, Snow Depth).
 
-TKTKTK
-
 #### When you need to check if your weather forecast office (WFO) reported a record
 
 📍  Check the WFO page for your location office. For example, here’s Baltimore’s: https://www.weather.gov/lwx/ObservedWeatherMaps
