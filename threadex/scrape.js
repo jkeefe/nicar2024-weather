@@ -1,4 +1,7 @@
-const STATION_IDS_PATH = "./resources/stationIds.json"
+import fs from "fs";
+import { makeRequest } from "./makeRequest.js";
+
+const STATION_IDS_PATH = process.argv[2]
 const BASE_URL_DATA = "https://data.rcc-acis.org/StnData";
 
 const yearToCheck = "2024"
@@ -34,29 +37,14 @@ const getParams = (sid) => {
   }
 }
 
-async function makeRequest(url, body) {
-  const response = await fetch(url, { method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-    'Accept': 'application/json'
-  },
-  body
-});
-  if (!response.ok) {
-    throw new Error('Network response was not ok');
-  }
-  
-  const data = await response.json();
-  return data
-}
-
 const main = async () => {
-  // const sids = await getSids();
+  const stationIdRaw = fs.readFileSync(STATION_IDS_PATH)
+  const { stationIds } = JSON.parse(stationIdRaw)
   
   let maxTempRecordCount = 0
   let stationCount = 0
   const maxTempLines = []
-  for (const sid of sids) {
+  for (const sid of stationIds) {
     // request record from a single station
     console.log(`Checking ${sid}`)
     const reqBody = JSON.stringify(getParams(sid))
@@ -98,7 +86,7 @@ const main = async () => {
     }
   }
   
-  console.log(`Found ${maxTempRecordCount} max temperature records for ${yearToCheck}-${dayToCheck} out of ${sids.length} stations checked:\n`)
+  console.log(`\n\nFound ${maxTempRecordCount} max temperature records for ${yearToCheck}-${dayToCheck} out of ${stationIds.length} stations checked:\n`)
   console.log(maxTempLines.join("\n"))
 
   return

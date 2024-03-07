@@ -1,4 +1,5 @@
 BOT_NAME:=threadex
+STATION_ID_PATH=resources/stationIds.json
 
 all: initialize scrape # alerts
 
@@ -8,13 +9,13 @@ initialize:
 	-mkdir tmp
 
 scrape:
-	node scrape.js
+	node scrape.js ${STATION_ID_PATH}
 
 #### --- Below are commands that are intended to run locally and manually --- ####
 
 # @TODO - get this to write out a file
 get-station-ids:
-	node getStationIds.js
+	node getStationIds.js ${STATION_ID_PATH}
 	
 clean:
 # delete tmp and public directories for simulating initial state locally
