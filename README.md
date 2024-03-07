@@ -2,7 +2,7 @@
 
 ## Overview
 
-- A bit about us and the NYT Weather Data Team
+- A bit about us and the NYT Weather Data Team (also: We're hiring!)
 - Monitoring real-time warnings
 - Finding and using historical data
 
