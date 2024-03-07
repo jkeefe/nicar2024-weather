@@ -1,4 +1,4 @@
-#NICAR 2024 Cheat Sheet: Historical Weather Data
+# NICAR 2024 Cheat Sheet: Historical Weather Data
 _March 7, 2024 | John Keefe + Bea Malsky_
 
 ## United States only
