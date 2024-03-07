@@ -88,7 +88,7 @@ Try each of these and then run `make warnings` again.
   - line 94
   - line 98
 
-#### Making it work for Slack
+### Making it work for Slack
 
 You need to make a Slack app (it's easier than that sounds) and get a "bot token."
 
@@ -115,9 +115,7 @@ export SLACK_TOKEN=xoxb-123-456-abc-zyz
 
 Now try `make slack`!
 
-### 
-
-#### Running in a Github Action
+### Running as a Github Action
 
 Github actions allow you to run your code in the cloud _really easily_.
 
@@ -140,18 +138,31 @@ To get this working, you need to do two key things:
 - Settings > Actions > General > Workflow Permissions > Read and Write permissions > SAVE
 - Don't forget to click "Save!"
 
+<img width="912" alt="Screenshot 2024-03-06 at 9 44 53 PM" src="https://github.com/jkeefe/nicar2024-weather/assets/312347/6103dd8f-260c-4264-926b-67ac68d2a95d">
+<img width="868" alt="Screenshot 2024-03-06 at 10 11 08 PM" src="https://github.com/jkeefe/nicar2024-weather/assets/312347/64df0600-0ae7-4857-99d0-45510ee0faa4">
+
 **Let the Action know your Slack Token** 
 
 - Settings > Secrets and varialbes > Actions > Repository Secrets > New Repository Secret
+
+<img width="569" alt="Screenshot 2024-03-06 at 9 41 52 PM" src="https://github.com/jkeefe/nicar2024-weather/assets/312347/3d1873cf-2bc5-420f-898d-30265864e6a9">
+<img width="813" alt="Screenshot 2024-03-06 at 9 43 08 PM" src="https://github.com/jkeefe/nicar2024-weather/assets/312347/599a8e19-1cde-49ff-89b0-9c3e20d84177">
+
 - Enter `SLACK_TOKEN` in the top box
 - Paste your "Bot User OAuth Token" which always starts `oxob-` into the larger box
+  
+<img width="912" alt="Screenshot 2024-03-06 at 9 44 53 PM" src="https://github.com/jkeefe/nicar2024-weather/assets/312347/99a855c4-46d7-482e-ad55-5123920e0a0f">
 
 Then ... run your action:
 
 - Actions > warnings > Run workflow dropdown > Run workflow button
+<img width="445" alt="Screenshot 2024-03-06 at 9 40 45 PM" src="https://github.com/jkeefe/nicar2024-weather/assets/312347/6db8365f-30be-4a49-9c31-5b3fa28e2068">
+<img width="589" alt="Screenshot 2024-03-06 at 9 40 54 PM" src="https://github.com/jkeefe/nicar2024-weather/assets/312347/5b535489-b742-43d5-8e8f-ea57a2533ece">
+
 - Click the "warnings" label next to the yellow dot to watch it in action
 
-### Historical Data
+
+## Historical Data
 
 
 
