@@ -55,6 +55,8 @@ A prototype product using [ThreadEx](https://threadex.rcc-acis.org/) and the [Na
 
 Handy period of record by station lookup: https://www.wpc.ncep.noaa.gov/exper/ndfd/inv.all.txt
 
+Example of a story using that hi min parameter ([link](https://www.nytimes.com/2021/07/09/upshot/record-breaking-hot-weather-at-night-deaths.html)):
+
 ![CleanShot 2024-03-06 at 21 13 27@2x](https://github.com/jkeefe/nicar2024-weather/assets/1094243/472280af-4bf2-4b05-bba0-31790c17c0ae)
 
 #### When you need an archive of National Weather Service watches, warnings, and advisories
