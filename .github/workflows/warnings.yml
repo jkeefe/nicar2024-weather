@@ -64,19 +64,6 @@ jobs:
           git commit -m "Updated at: ${timestamp}" || exit 0
           git push origin main
 
-      - name: Report status
-        uses: ravsamhq/notify-slack-action@v2
-        if: always()
-        with:
-          status: ${{ job.status }}
-          notification_title: '*Bot issue:*'
-          message_format: '{emoji} *{workflow}* bot has {status_message}.'
-          footer: '<{run_url}|View this run on Github.>'
-          notify_when: 'failure'
-          # mention_users: 'W019660LURJ'            # <-- optionally mention users (here, @johnkeefe)
-          # mention_users_when: 'failure,warnings'  # <--
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.WEATHER_ERRORS_SLACK_WEBHOOK }}
 
 
 
