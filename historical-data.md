@@ -11,7 +11,7 @@ _March 7, 2024 | John Keefe + Bea Malsky_
 
 Example of this data set in use ([link](https://www.nytimes.com/interactive/2023/12/22/us/christmas-snow-weather-forecast.html)): 
 
-TKTKTK
+![CleanShot 2024-03-06 at 20 56 40@2x](https://github.com/jkeefe/nicar2024-weather/assets/1094243/db81bf29-2f54-4093-ba67-5b22aacd5940)
 
 #### …and you want to compare that to current precipitation
 
@@ -19,11 +19,11 @@ TKTKTK
 
 A NOAA product with observed precipitation estimates (for the last 1 day up to a year back) that also includes departures from normal and percent of normal.
 
-TKTKTK
+![CleanShot 2024-03-06 at 20 57 27@2x](https://github.com/jkeefe/nicar2024-weather/assets/1094243/8938aad0-ae53-4027-9c3f-5c48c020be09)
 
 Example of this data set in use ([link](https://www.nytimes.com/interactive/2024/uri/embeddedinteractive/b167f5e0-6c8b-561f-b878-7970bbcfd9bd)):
 
-TKTKTK
+![CleanShot 2024-03-06 at 20 58 07@2x](https://github.com/jkeefe/nicar2024-weather/assets/1094243/4418c2ed-2aae-484e-922d-d97c4e2a6b90)
 
 #### When you need to find state-level records
 
