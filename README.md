@@ -137,8 +137,8 @@ To get this working, you need to do two key things:
 
 - Settings > Actions > General > Workflow Permissions > Read and Write permissions > SAVE
 - Don't forget to click "Save!"
+<img width="959" alt="Screenshot 2024-03-06 at 9 49 13 PM" src="https://github.com/jkeefe/nicar2024-weather/assets/312347/daa35671-8fec-4dde-a1d0-d769733097ca">
 
-<img width="912" alt="Screenshot 2024-03-06 at 9 44 53 PM" src="https://github.com/jkeefe/nicar2024-weather/assets/312347/6103dd8f-260c-4264-926b-67ac68d2a95d">
 <img width="868" alt="Screenshot 2024-03-06 at 10 11 08 PM" src="https://github.com/jkeefe/nicar2024-weather/assets/312347/64df0600-0ae7-4857-99d0-45510ee0faa4">
 
 **Let the Action know your Slack Token** 
