@@ -37,6 +37,10 @@ TKTKTK
 
 📍  Check the WFO page for your location office. For example, here’s Baltimore’s: https://www.weather.gov/lwx/ObservedWeatherMaps
 
+Also: https://www.weather.gov/wrh/Climate?wfo=lwx
+
+NWS Twitter accounts are also often quite useful!
+
 #### When you want to check the long-term records of a particular location, threaded over time
 
 📍 [ThreadEx: Long-Term Station Extremes for America](https://threadex.rcc-acis.org/)

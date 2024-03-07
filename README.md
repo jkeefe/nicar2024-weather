@@ -69,30 +69,20 @@ Running computers cost money. You get 60 hours free every month and 15 gigabytes
 
 ### Weather Warnings Code
 
-- Look at the Makefile
+- Look at `warnings/Makefile`
 - Open the Terminal
 - `cd warnings`
 - `make clean`
 - `make download`
 
-
-
-
 ### Historical Data
 
+- Look at `threadex/Makefile`
+- Open the Terminal
+- `cd ../threadex`
+- `make initialize`
+- Optionally: `make get-station-ids`
+- `make scrape`
 
-
-- Details: https://www.weather.gov/documentation/services-web-api#/default/alerts_active
-
-
-No authentication
-
-Source for the "code" parameter: https://www.weather.gov/nwr/eventcodes
-
-Request url: https://api.weather.gov/alerts/active?status=actual&message_type=alert&code=TOR&limit=500
-
-Tornado watches: https://api.weather.gov/alerts/active?status=actual&message_type=alert&code=TOA&limit=500
-
-```bash
-curl -X GET "https://api.weather.gov/alerts/active?status=actual&message_type=alert&code=TOR&limit=500" -H "accept: application/geo+json"
-```
+- ACIS documentation: http://www.rcc-acis.org/docs_webservices.html
+- Query builder: https://builder.rcc-acis.org/
