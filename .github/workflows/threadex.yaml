@@ -57,8 +57,6 @@ jobs:
       #     packages: python3-numpy gdal-bin libgdal-dev
 
       - name: Start the data processing using make
-        env:
-          # MY_API_KEY: ${{ secrets.MY_API_KEY }}         # <-- Add repository secrets here
         run: |-
           cd ./"$GITHUB_WORKFLOW"
           make all                                        # <-- this runs your main script
