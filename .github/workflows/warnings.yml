@@ -34,7 +34,7 @@ jobs:
       - name: Install packages if there's no cache
         if: steps.npm-cache.outputs.cache-hit != 'true'
         run: |-
-          cd ./bots/"$GITHUB_WORKFLOW"
+          cd ./"$GITHUB_WORKFLOW"
           echo "$NPMRC" | base64 --decode > .npmrc
           npm ci 
 
