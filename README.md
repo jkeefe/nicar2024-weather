@@ -173,7 +173,7 @@ To get this working, you need to do two key things:
 - Open the Terminal
 - `cd ../threadex`
 - `make initialize`
-- Optionally: `make get-station-ids`
+- Optionally to generate station ids: `make stations`
 - `make scrape`
 
 - ACIS documentation: http://www.rcc-acis.org/docs_webservices.html
