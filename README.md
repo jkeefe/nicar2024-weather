@@ -117,15 +117,39 @@ Now try `make slack`!
 
 ### 
 
-#### Making a Github Action
+#### Running in a Github Action
 
-Github actions 
+Github actions allow you to run your code in the cloud _really easily_.
 
-- Grant permission
-- Add secret
+The driver of any github action is a yaml file in the `.github/workflows` directory of a repo, [like this one](.github/workflows/warnings.yml).
 
+In short, here's what our `warnings` Github Action does:
 
+- It starts running according to a cron statement ([here every 10 minutes(https://github.com/jkeefe/nicar2024-weather/blob/39ae476058f19021be90a70dbc59b60cef120fd5/.github/workflows/warnings.yml#L5C1-L5C103)])
+- Spins up a [computer running ubuntu](https://github.com/jkeefe/nicar2024-weather/blob/39ae476058f19021be90a70dbc59b60cef120fd5/.github/workflows/warnings.yml#L12-L14).
+- [Checks out](https://github.com/jkeefe/nicar2024-weather/blob/39ae476058f19021be90a70dbc59b60cef120fd5/.github/workflows/warnings.yml#L17C1-L20C25) this repo
+- [Loads node.js](https://github.com/jkeefe/nicar2024-weather/blob/39ae476058f19021be90a70dbc59b60cef120fd5/.github/workflows/warnings.yml#L22C1-L32) and installs packages (or pulls them from a cache if nothing has changed).
+- [Reads](https://github.com/jkeefe/nicar2024-weather/blob/39ae476058f19021be90a70dbc59b60cef120fd5/.github/workflows/warnings.yml#L48) a SLACK_TOKEN secret
+- [Runs make all](https://github.com/jkeefe/nicar2024-weather/blob/39ae476058f19021be90a70dbc59b60cef120fd5/.github/workflows/warnings.yml#L56) just like we did in the terminal
+- [Commits](https://github.com/jkeefe/nicar2024-weather/blob/39ae476058f19021be90a70dbc59b60cef120fd5/.github/workflows/warnings.yml#L58C1-L65C31) the new data to the repo (saving our `seen.json` for next run)
 
+To get this working, you need to do two key things:
+
+**Let the Action write back to the repo** 
+
+- Settings > Actions > General > Workflow Permissions > Read and Write permissions > SAVE
+- Don't forget to click "Save!"
+
+**Let the Action know your Slack Token** 
+
+- Settings > Secrets and varialbes > Actions > Repository Secrets > New Repository Secret
+- Enter `SLACK_TOKEN` in the top box
+- Paste your "Bot User OAuth Token" which always starts `oxob-` into the larger box
+
+Then ... run your action:
+
+- Actions > warnings > Run workflow dropdown > Run workflow button
+- Click the "warnings" label next to the yellow dot to watch it in action
 
 ### Historical Data
 
