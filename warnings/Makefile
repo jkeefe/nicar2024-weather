@@ -1,5 +1,5 @@
-# SOURCE_URL:="https://api.weather.gov/alerts/active?area=MD,DC,VA&status=actual&code=TOR,FFW,EWW,BZW,HLS,HUA,HUW,TRA,TRW,TSY,TSA,TSW,SSW,NUW,RHW,SPW,VOW,CEM&limit=500"
-SOURCE_URL:="https://s3.amazonaws.com/media.johnkeefe.net/data/example_warnings.json"
+SOURCE_URL:="https://api.weather.gov/alerts/active?area=MD,DC,VA&status=actual&code=TOR,FFW,EWW,BZW,HLS,HUA,HUW,TRA,TRW,TSY,TSA,TSW,SSW,NUW,RHW,SPW,VOW,CEM&limit=500"
+# SOURCE_URL:="https://s3.amazonaws.com/media.johnkeefe.net/data/example_warnings.json"
 
 all: clean download warnings
 
@@ -15,3 +15,6 @@ download:
 
 warnings:
 	node warnings.js
+
+slack:
+	node warnings-slack.js
