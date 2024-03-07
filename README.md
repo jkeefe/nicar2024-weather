@@ -121,6 +121,8 @@ Now try `make slack`!
 
 Github actions 
 
+- Grant permission
+- Add secret
 
 
 

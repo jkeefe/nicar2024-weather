@@ -35,7 +35,6 @@ jobs:
         if: steps.npm-cache.outputs.cache-hit != 'true'
         run: |-
           cd ./"$GITHUB_WORKFLOW"
-          echo "$NPMRC" | base64 --decode > .npmrc
           npm ci 
 
       # - name: Set up Python 3.10
