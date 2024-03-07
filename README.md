@@ -18,8 +18,6 @@
     - Area? Let's say Maryland, Virginia and D.C. You can get fancier here, but states are easy: `&area=MD,DC,VA`
     - Code. This is the warning type. Tornado warning, tornado watch, etc. List is [here](https://www.weather.gov/nwr/eventcodes).
     - Limit. `&limit=500`
-
-    - 
   - But what about monitoring it ... for free!
 
 ### The Bot Tooling We Use
@@ -69,11 +67,63 @@ Running computers cost money. You get 60 hours free every month and 15 gigabytes
 
 ### Weather Warnings Code
 
-- Look at `warnings/Makefile`
+- Open the `warnings` folder
+- Look at the Makefile in that folder
 - Open the Terminal
 - `cd warnings`
 - `make clean`
 - `make download`
+
+Don't do `make warnings` yet. Let's look at what this does!
+
+- okay, when John says so, do `make warnings`
+
+Try each of these and then run `make warnings` again.
+
+- **Add a full description:** uncomment line 87 (delete the `//`)
+- **Add a map link, using geojson.io!** uncomment lines 89-92
+- **Ignore warnings we've seen before:** uncomment the others ...
+  - line 57
+  - lines 72-79
+  - line 94
+  - line 98
+
+#### Making it work for Slack
+
+You need to make a Slack app (it's easier than that sounds) and get a "bot token."
+
+The only catch is that depending on your existing Slack setup, you may need to get an administrator to approve the creation of an app. The good thing is that you are only requesting the ability to `chat:write`, which is simply posting into a channel.
+
+Also? This works in a _free Slack workspace_. So you can do this all on your own if you want; just make a new workspace at `slack.com`.
+
+OK, here's what to do:
+
+- Do steps 1, 2 and 3 in this [Slack app quickstart](https://api.slack.com/start/quickstart)
+- In step 2, "Requesting Scopes" you just need the `chat:write` scope and it will only work in channels where the bot is invited.
+- The thing you want is the "Bot User OAuth Token" which always starts `oxob-`. That's the token.
+- Locally, you can enter the following to test it directly into your Slack:
+
+```
+export SLACK_TOKEN=[your_token]
+```
+
+For example:
+
+```
+export SLACK_TOKEN=xoxb-123-456-abc-zyz
+```
+
+Now try `make slack`!
+
+### 
+
+#### Making a Github Action
+
+Github actions 
+
+
+
+
 
 ### Historical Data
 
