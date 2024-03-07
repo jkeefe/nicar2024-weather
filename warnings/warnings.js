@@ -54,7 +54,6 @@ const makeMapURL = (warning) => {
 
 const main = async () => {
 
-    // read seen file
     const seen = await loadFile('./data/seen.json')
     const current_warnings = await loadFile('./tmp/download.json')
 
@@ -69,34 +68,34 @@ const main = async () => {
 
         const warning = current_warnings.features[i]
 
-        // // skip if this warning is not new
-        // let matches = seen.indexOf(warning.properties.id)
-        // if (matches > -1) {
+        // skip if this warning is not new
+        let matches = seen.indexOf(warning.properties.id)
+        if (matches > -1) {
 
-        //     // We have a match, so this one is not new
-        //     console.log(`Warning ${i + 1} is not new. Skipping.`)
-        //     continue
+            // We have a match, so this one is not new
+            console.log(`Warning ${i + 1} is not new. Skipping.`)
+            continue
 
-        // }
+        }
 
         console.log(`\n-+-+-+- NEW WARNING! -+-+-+-\n`)
         console.log(`${warning.properties.event}`)
         console.log(`${warning.properties.headline}`)
         console.log(`Locations/counties included: ${warning.properties.areaDesc}`)
 
-        // console.log(warning.properties.description)
-        // console.log(`\nWarning time: ${warning.properties.effective}`)
+        console.log(warning.properties.description)
+        console.log(`\nWarning time: ${warning.properties.effective}`)
 
         const url = makeMapURL(warning)
         if (url) {
             console.log(`Map url: ${url}`)
         }
 
-        // seen.push(warning.properties.id)
+        seen.push(warning.properties.id)
 
     }
 
-    // await saveFile('./data/', 'seen.json', seen)
+    await saveFile('./data/', 'seen.json', seen)
 
     console.log("Done!")
 }

@@ -29,37 +29,23 @@ jobs:
         id: npm-cache
         with:
           path: '**/warnings/node_modules'
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/warnings/package-lock.json') }}
+          key: ${{ runner.os }}-modules-${{ hashFiles('package-lock.json') }}
 
       - name: Install packages if there's no cache
-        env:
-          NPMRC: ${{ secrets.NPMRC }}
         if: steps.npm-cache.outputs.cache-hit != 'true'
         run: |-
           cd ./bots/"$GITHUB_WORKFLOW"
           echo "$NPMRC" | base64 --decode > .npmrc
           npm ci 
 
-      # - name: Set up Python 3.10        # <-- required for GDAL
+      # - name: Set up Python 3.10
       #   uses: actions/setup-python@v4
       #   with:
       #     python-version: '3.10' 
 
-      # - name: Install GDAL and dependencies   # <-- uncomment for GDAL (also the python setup above)
-      #   env:
-      #     CPLUS_INCLUDE_PATH: /usr/include/gdal
-      #     C_INCLUDE_PATH: /usr/include/gdal
-      #   run: |
-      #     sudo add-apt-repository -y ppa:ubuntugis/ppa
-      #     sudo apt update 
-      #     sudo apt-get install python-numpy gdal-bin libgdal-dev
-
       - name: Start the data processing using make
         env:
           BOT_NAME: ${{ github.workflow }}                # <-- This makes you bot name available to scripts
-          INTERACTIVE_SCRIPTS_CREDENTIALS: ${{ secrets.INTERACTIVE_SCRIPTS_CREDENTIALS }}
-          WEATHER_BOT_SLACK_WEBHOOK: ${{ secrets.WEATHER_BOT_SLACK_WEBHOOK }}
-          WEATHER_ERRORS_SLACK_WEBHOOK: ${{ secrets.WEATHER_ERRORS_SLACK_WEBHOOK }}
           SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
           # MY_API_KEY: ${{ secrets.MY_API_KEY }}         # <-- Can make available additional repository secrets here
         uses: nick-fields/retry@v2
@@ -68,21 +54,7 @@ jobs:
           retry_on: error
           timeout_minutes: 5
           retry_wait_seconds: 30
-          command: cd ./bots/"$GITHUB_WORKFLOW"; make all 
-
-      - name: Report status
-        uses: ravsamhq/notify-slack-action@v2
-        if: always()
-        with:
-          status: ${{ job.status }}
-          notification_title: '*Weather Bot issue:*'
-          message_format: '{emoji} *{workflow}* bot has {status_message}.'
-          footer: '<{run_url}|View this run on Github.>'
-          notify_when: 'failure'
-          # mention_users: 'W019660LURJ'            # <-- optionally mention users (here, @johnkeefe)
-          # mention_users_when: 'failure,warnings'  # <--
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.WEATHER_ERRORS_SLACK_WEBHOOK }}
+          command: cd warnings && make all
 
       - name: Commit and push to main branch
         run: |-
@@ -92,4 +64,20 @@ jobs:
           timestamp=$(date -u)
           git commit -m "Updated at: ${timestamp}" || exit 0
           git push origin main
+
+      - name: Report status
+        uses: ravsamhq/notify-slack-action@v2
+        if: always()
+        with:
+          status: ${{ job.status }}
+          notification_title: '*Bot issue:*'
+          message_format: '{emoji} *{workflow}* bot has {status_message}.'
+          footer: '<{run_url}|View this run on Github.>'
+          notify_when: 'failure'
+          # mention_users: 'W019660LURJ'            # <-- optionally mention users (here, @johnkeefe)
+          # mention_users_when: 'failure,warnings'  # <--
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.WEATHER_ERRORS_SLACK_WEBHOOK }}
+
+
 
