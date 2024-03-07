@@ -153,7 +153,7 @@ To get this working, you need to do two key things:
   
 <img width="912" alt="Screenshot 2024-03-06 at 9 44 53 PM" src="https://github.com/jkeefe/nicar2024-weather/assets/312347/99a855c4-46d7-482e-ad55-5123920e0a0f">
 
-Then ... run your action:
+**Then ... run your action:**
 
 - Actions > warnings > Run workflow dropdown > Run workflow button
 <img width="445" alt="Screenshot 2024-03-06 at 9 40 45 PM" src="https://github.com/jkeefe/nicar2024-weather/assets/312347/6db8365f-30be-4a49-9c31-5b3fa28e2068">
@@ -161,6 +161,11 @@ Then ... run your action:
 
 - Click the "warnings" label next to the yellow dot to watch it in action
 
+**To automate it ...**
+
+- Uncomment [these two lines]([url](https://github.com/jkeefe/nicar2024-weather/blob/b2f2cbb9a29d29c2a1525cd907804f537c86897c/.github/workflows/warnings.yml#L4-L5)) in the `warnings.yaml` file
+- Adjust the cron syntax if necessary ([here's a good site]([url](https://crontab.guru/)) for that)
+- Commit your changes and push to Github.
 
 ## Historical Data
 
